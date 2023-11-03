@@ -1,0 +1,8 @@
+[
+	{ "name": "fantasy", "link": "/" },
+	{ "name": "adventure", "link": "/" },
+	{ "name": "horror", "link": "/" },
+	{ "name": "sci-fi", "link": "/" },
+	{ "name": "mystery", "link": "/" },
+	{ "name": "comics", "link": "/" }
+]

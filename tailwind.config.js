@@ -18,7 +18,7 @@ export default {
                 "fsd-h3": "30px",
                 "fsm-h4": "17px",
                 "fsd-h4": "20px",
-                "fsm-link": "19px",
+                "fsm-link": "30px",
                 "fsd-link": "22px",
                 "fsm-btn": "12px",
                 "fsd-btn": "12px",
