@@ -13,8 +13,9 @@
 
 <template>
 	<section
-		class="wrapper search flex justify-between items-center py-3 px-[2vw] bg-clr-bg relative border border-clr-primary"
+		class="wrapper flex justify-between items-center py-3 px-[2vw] relative bg-clr-bg"
 	>
+		<SectionFrame />
 		<nav
 			class="search__nav"
 			:class="{ 'categories-bar-active': isCategoriesBar }"
@@ -68,30 +69,6 @@
 </template>
 
 <style scoped>
-	.search::before {
-		border: 1px solid var(--clr-primary);
-	}
-
-	.search::before,
-	.search::after {
-		content: "";
-		position: absolute;
-		pointer-events: none;
-	}
-
-	.search::before {
-		rotate: 0.2deg;
-		inset: 0;
-	}
-
-	.search::after {
-		inset: -5px;
-		z-index: -1;
-		opacity: 1;
-		background-image: conic-gradient(#8368be, #457474, #10c6eb);
-		filter: blur(20px) opacity(0.6);
-	}
-
 	.search__list {
 		display: flex;
 		gap: 20px;

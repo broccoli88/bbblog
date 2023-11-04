@@ -3,8 +3,9 @@
 <template>
 	<main class="isolate">
 		<!-- <NuxtPicture src="/images/bg.webp" /> -->
-		<!-- <SectionsSectionHero /> -->
+		<!-- <SectionHero /> -->
 		<!-- <TheSearchBar /> -->
+		<SectionLatestReviews />
 	</main>
 </template>
 

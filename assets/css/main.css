@@ -30,14 +30,14 @@
 	--fsd-h1: 160px;
 	--fsm-h2: 38px;
 	--fsd-h2: 45px;
-	--fsm-h3: 24px;
+	--fsm-h3: 26px;
 	--fsd-h3: 30px;
-	--fsm-h4: 20px;
-	--fsd-h4: 25px;
+	--fsm-h4: 16px;
+	--fsd-h4: 20px;
 	--fsm-link: 30px;
 	--fsd-link: 22px;
-	--fsm-btn: 12px;
-	--fsd-btn: 12px;
+	--fsm-btn: 14px;
+	--fsd-btn: 16px;
 	--fsm-note: 10px;
 	--fsd-note: 12px;
 }
