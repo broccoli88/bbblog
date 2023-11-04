@@ -2,13 +2,13 @@
 
 <template>
 	<button
-		class="btn relative bg-clr-bg w-full border border-clr-primary py-[0.2em]"
+		class="btn relative bg-clr-bg border border-clr-primary py-[0.2em] px-[1.5em]"
 	>
 		<slot> Click </slot>
 	</button>
 </template>
 
-<style scoped>
+<style>
 	.btn {
 		--_rotate: var(--rotate, 0.2deg);
 		--_inset: var(--inset, -5px);
@@ -23,7 +23,7 @@
 	.btn:focus,
 	.btn:hover::after,
 	.btn:focus::after {
-		color: white;
+		color: var(--clr-primary);
 		opacity: 1;
 	}
 

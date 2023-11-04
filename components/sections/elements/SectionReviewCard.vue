@@ -12,7 +12,9 @@
 				<p class="text-fsm-note md:text-fsd-note">
 					by: dmitry glukhovsky
 				</p>
-				<AppButton class="mt-auto md:mt-8">check review</AppButton>
+				<AppButtonLink class="mt-auto md:mt-8 grid">
+					check review
+				</AppButtonLink>
 			</div>
 		</section>
 	</article>

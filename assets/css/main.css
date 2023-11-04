@@ -52,6 +52,7 @@
 	letter-spacing: 1.5px;
 
 	background-color: var(--clr-bg);
+	overflow-y: hidden;
 }
 
 h1,

@@ -12,14 +12,14 @@
 		>
 			<NuxtLink to="/" class="text-3xl">BookBestiary</NuxtLink>
 			<div class="md:hidden" @click.capture="toggleMenu">
-				<TransitionsTransitionScale>
+				<TransitionScale>
 					<Icon
 						name="ion:ios-bookmarks"
 						size="30px"
 						v-if="isMobileMenu"
 					/>
 					<Icon name="ion:md-bookmarks" size="30px" v-else />
-				</TransitionsTransitionScale>
+				</TransitionScale>
 			</div>
 			<nav
 				class="nav__nav"
@@ -87,7 +87,7 @@
 	}
 
 	.nav__link:hover {
-		color: white;
+		color: var(--clr-primary);
 	}
 
 	@media (max-width: 768px) {
@@ -106,12 +106,6 @@
 
 			transition: var(--_transition);
 			background-color: var(--clr-bg2);
-			/* background-image: linear-gradient(
-				to bottom,
-				var(--clr-bg),
-				#4e268f,
-				var(--clr-primary)
-			); */
 		}
 
 		.mobile-menu-active {
