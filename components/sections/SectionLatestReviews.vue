@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-	<section class="grid">
+	<section class="grid mb-12">
 		<SectionHeader>Latest Reviews</SectionHeader>
 		<div class="wrapper review-card-grid mt-16">
 			<SectionReviewCard />

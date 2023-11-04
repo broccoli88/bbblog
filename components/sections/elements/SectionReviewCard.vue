@@ -31,12 +31,12 @@
 
 			z-index: 1;
 			background-image: linear-gradient(transparent, #21142b 75%);
+			pointer-events: none;
 		}
 
 		.card__content {
 			grid-template-columns: 1fr;
 			grid-template-rows: 1fr 40%;
-			position: relative;
 		}
 	}
 </style>

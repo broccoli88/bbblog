@@ -1,17 +1,32 @@
 <script setup>
 	import navLinks from "@/data/nav-links.json";
+	import usePreventBodyOverflow from "~/utils/usePreventBodyOverflow";
 
 	const isMobileMenu = ref(false);
 	const toggleMenu = () => (isMobileMenu.value = !isMobileMenu.value);
+
+	watch(isMobileMenu, () => usePreventBodyOverflow(isMobileMenu.value));
+
+	// Observer
+
+	const navRef = ref();
+
+	onMounted(() => {
+		const { navObserver, observedEl } = useObserveNav(navRef.value);
+		navObserver.observe(observedEl);
+	});
 </script>
 
 <template>
-	<header class="py-5 fixed top-0 left-0 w-full z-[999]">
+	<header
+		class="py-5 fixed top-0 left-0 w-full z-[999] transition-colors duration-300"
+		ref="navRef"
+	>
 		<div
 			class="wrapper nav__wrapper flex flex-wrap justify-between gap-5 max-md:px-5 isolate relative"
 		>
 			<NuxtLink to="/" class="text-3xl">BookBestiary</NuxtLink>
-			<div class="md:hidden" @click.capture="toggleMenu">
+			<button class="md:hidden" @click.capture="toggleMenu">
 				<TransitionScale>
 					<Icon
 						name="ion:ios-bookmarks"
@@ -20,7 +35,7 @@
 					/>
 					<Icon name="ion:md-bookmarks" size="30px" v-else />
 				</TransitionScale>
-			</div>
+			</button>
 			<nav
 				class="nav__nav"
 				:class="{ 'mobile-menu-active': isMobileMenu }"
@@ -36,6 +51,11 @@
 </template>
 
 <style scoped>
+	.nav-bg {
+		background-color: hsl(259, 35%, 9%, 0.9);
+		box-shadow: 0 0 25px hsl(190, 67%, 47%, 0.4);
+	}
+
 	.nav__nav {
 		--_transition: 0.3s all ease-out;
 
