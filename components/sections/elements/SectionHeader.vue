@@ -32,6 +32,7 @@
 
 	.section-header__img :deep(img) {
 		object-fit: contain;
+		height: 100%;
 	}
 
 	.section-header__frame {

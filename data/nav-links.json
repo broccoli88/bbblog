@@ -1,6 +1,7 @@
 [
-	{ "name": "about", "link": "/" },
-	{ "name": "contact", "link": "/" },
-	{ "name": "reviews", "link": "/" },
-	{ "name": "blog", "link": "/" }
+	{ "name": "home", "link": "/" },
+	{ "name": "about", "link": "/about" },
+	{ "name": "contact", "link": "/contact" },
+	{ "name": "reviews", "link": "/reviews" },
+	{ "name": "blog", "link": "/blog" }
 ]

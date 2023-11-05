@@ -10,7 +10,7 @@
 				<li v-for="link in navLinks" :key="link.name">
 					<NuxtLink
 						:to="link.link"
-						class="hover:text-clr-primary duration-300 transition-colors"
+						class="hover:text-clr-primary duration-300 transition-colors font-wisp"
 					>
 						{{ link.name }}
 					</NuxtLink>

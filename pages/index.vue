@@ -30,5 +30,6 @@
 
 	.hero-bg :deep(img) {
 		object-position: top;
+		height: 100%;
 	}
 </style>

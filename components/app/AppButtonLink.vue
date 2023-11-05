@@ -1,10 +1,22 @@
-<script setup></script>
+<script setup>
+	defineProps({
+		src: {
+			type: [String, Object],
+			default: "/",
+		},
+		title: {
+			type: String,
+			default: "link",
+		},
+	});
+</script>
 
 <template>
 	<button>
 		<NuxtLink
-			to="/"
-			class="btn relative bg-clr-bg border border-clr-primary grid whitespace-nowrap py-[0.2em] px-[1.5em]"
+			:to="src"
+			:title="title"
+			class="btn relative bg-clr-bg border border-clr-primary grid whitespace-nowrap py-[0.2em] px-[1.5em] font-wisp"
 		>
 			<slot> Click </slot>
 		</NuxtLink>

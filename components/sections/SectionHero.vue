@@ -2,7 +2,7 @@
 
 <template>
 	<section class="hero grid h-screen items-center justify-center isolate">
-		<h1 class="text-center">Book Revievs</h1>
+		<h1 class="text-center text-[80px] md:text-[160px]">Book Revievs</h1>
 	</section>
 </template>
 

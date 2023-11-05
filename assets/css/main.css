@@ -5,6 +5,11 @@
 	font-style: normal;
 	font-stretch: normal;
 }
+@font-face {
+	font-family: "Savate";
+	src: url("assets/fonts/savate-regular.otf") format("opentype");
+	src: url("assets/fonts/savate-italique.otf") format("opentype");
+}
 
 @tailwind base;
 @tailwind components;
@@ -24,10 +29,18 @@
 	/* Font */
 	/*============================================================================= */
 
+	--ff-wisp: "Wisp", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+		sans-serif;
+
+	--ff-savate: "Savate", system-ui, -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+		"Helvetica Neue", sans-serif;
+
 	--fsm-txt: 18px;
 	--fsd-txt: 20px;
-	--fsm-h1: 80px;
-	--fsd-h1: 160px;
+	--fsm-h1: 45px;
+	--fsd-h1: 60px;
 	--fsm-h2: 38px;
 	--fsd-h2: 45px;
 	--fsm-h3: 26px;
@@ -44,15 +57,19 @@
 
 #__nuxt {
 	min-height: 100vh;
-	font-family: "Wisp", system-ui, -apple-system, BlinkMacSystemFont,
-		"Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-		"Helvetica Neue", sans-serif;
+
+	font-family: var(--ff-savate);
 	font-size: var(--fsm-txt);
 	color: var(--clr-text);
 	letter-spacing: 1.5px;
 
 	background-color: var(--clr-bg);
 	overflow-y: hidden;
+}
+
+h1,
+h2 {
+	font-family: var(--ff-wisp);
 }
 
 h1,
@@ -82,13 +99,18 @@ h4 {
 
 img {
 	width: 100%;
-	height: 100%;
+	/* height: 100%; */
 	object-fit: cover;
 }
 
 ul,
 li {
 	list-style: none;
+}
+
+.router-link-active {
+	color: var(--clr-primary);
+	transition: 0.3s all ease-out;
 }
 
 @media (min-width: 768px) {
@@ -115,6 +137,6 @@ li {
 
 @layer components {
 	.wrapper {
-		@apply max-w-[1065px] w-full mx-auto;
+		@apply max-w-[1065px] w-full mx-auto px-5;
 	}
 }

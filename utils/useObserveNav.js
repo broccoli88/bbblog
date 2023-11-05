@@ -1,12 +1,13 @@
 export default (el) => {
     const observerOptions = {
-        rootMargin: "200px 0px 0px 0px",
+        rootMargin: "100px 0px 0px 0px",
     };
 
+    const container = document.querySelector('.app-container')
     const nav = unref(el)
     const observedEl = document.createElement("div");
     observedEl.classList.add("observed-for-nav");
-    nav.before(observedEl);
+    container.before(observedEl);
 
     const navObserver = new IntersectionObserver((entries) => {
         if (nav) {

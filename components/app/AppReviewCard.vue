@@ -1,18 +1,39 @@
-<script setup></script>
+<script setup>
+	const props = defineProps({
+		id: {
+			type: Number,
+		},
+		title: {
+			type: String,
+		},
+		author: {
+			type: String,
+		},
+		review: {
+			type: Object,
+		},
+		release: {
+			type: String,
+		},
+	});
+
+	const id = toRef(props, "id");
+	const reviewLink = `reviews/${id.value}`;
+</script>
 
 <template>
 	<article class="card relative bg-clr-bg border border-clr-primary">
 		<SectionFrame />
 		<section class="card__content grid grid-cols-2">
 			<NuxtPicture src="/images/book-cover.png" class="card__img" />
-			<div class="card__description isolate p-3 flex flex-col z-10">
-				<p class="text-fsm-note md:text-fsd-note">03/08/2023</p>
-				<h3>metro 2035</h3>
+			<div
+				class="card__description isolate p-3 flex flex-col z-10 capitalize"
+			>
+				<p class="text-fsm-note md:text-fsd-note">{{ release }}</p>
+				<h3>{{ title }}</h3>
 				<h4 class="mb-2">the final installment</h4>
-				<p class="text-fsm-note md:text-fsd-note">
-					by: dmitry glukhovsky
-				</p>
-				<AppButtonLink class="mt-auto md:mt-8 grid">
+				<p class="text-fsm-note md:text-fsd-note">by: {{ author }}</p>
+				<AppButtonLink class="mt-auto md:mt-8 grid" :src="reviewLink">
 					check review
 				</AppButtonLink>
 			</div>

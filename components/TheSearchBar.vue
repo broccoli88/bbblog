@@ -28,7 +28,7 @@
 				>
 					<NuxtLink
 						:to="category.link"
-						class="hover:text-clr-primary transition-colors duration-300 px-3 py-2"
+						class="hover:text-clr-primary transition-colors duration-300 px-3 py-2 font-wisp whitespace-nowrap"
 					>
 						{{ category.name }}</NuxtLink
 					>

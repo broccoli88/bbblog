@@ -4,7 +4,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                "wisp": ["Wisp", "system-ui", "sans-serif"]
+                "wisp": ["Wisp", "system-ui", "sans-serif"],
+                "savate": ["Savate", "system-ui", "sans-serif"]
             },
 
             fontSize: {

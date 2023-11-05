@@ -25,7 +25,7 @@
 		<div
 			class="wrapper nav__wrapper flex flex-wrap justify-between gap-5 max-md:px-5 isolate relative"
 		>
-			<NuxtLink to="/" class="text-3xl">BookBestiary</NuxtLink>
+			<NuxtLink to="/" class="text-1xl">BookBestiary</NuxtLink>
 			<button class="md:hidden" @click.capture="toggleMenu">
 				<TransitionScale>
 					<Icon
@@ -60,7 +60,7 @@
 		--_transition: 0.3s all ease-out;
 
 		display: flex;
-		gap: 25px;
+		gap: 0.8vw;
 	}
 
 	.nav__item {
@@ -104,17 +104,19 @@
 		transition: var(--_transition);
 		font-size: var(--fsd-link);
 		white-space: nowrap;
+		font-family: var(--ff-wisp);
 	}
 
 	.nav__link:hover {
 		color: var(--clr-primary);
 	}
 
-	@media (max-width: 768px) {
+	@media (max-width: 767px) {
 		.nav__nav {
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+			gap: 25px;
 			clip-path: circle(0% at 100% 50%);
 
 			position: fixed;
