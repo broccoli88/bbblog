@@ -1,5 +1,8 @@
-<script setup></script>
+<script setup>
+	// const { $client } = useNuxtApp();
 
+	// const data = await $client.getEntries();
+</script>
 <template>
 	<main class="isolate relative grid gap-44">
 		<NuxtPicture src="/images/bg-hero.webp" class="hero-bg" />

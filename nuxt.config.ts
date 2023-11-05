@@ -9,4 +9,10 @@ export default defineNuxtConfig({
 			pathPrefix: false,
 		},
 	],
+	runtimeConfig: {
+		//   contentful
+
+		space: process.env.NUXT_CONTENTFUL_SPACE,
+		accessToken: process.env.NUXT_CONTENTFUL_ACCESS_TOKEN,
+	},
 });
