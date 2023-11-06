@@ -1,5 +1,6 @@
 <script setup>
-	import reviews from "@/data/review.json";
+	const reviewsStore = useReviewsStore();
+	const { reviews } = storeToRefs(reviewsStore);
 
 	const allReviewsSrc = { name: "reviews" };
 	const allReviewsTitle = "Navigate to reviews list";
@@ -11,12 +12,17 @@
 		<div class="wrapper review-card-grid mt-16">
 			<AppReviewCard
 				v-for="review in reviews"
-				:key="review.id"
-				:id="review.id"
-				:title="review.title"
-				:author="review.author"
-				:release="review.release"
-				:review="review.review"
+				:key="review.sys.id"
+				:id="review.sys.id"
+				:title="review.fields.bookTitle"
+				:subtitle="review.fields.bookSubtitle"
+				:author="review.fields.bookAuthor"
+				:release="review.fields.bookRelease"
+				:createdAt="review.fields.createdAt"
+				:review1="review.fields.review1"
+				:review2="review.fields.review2"
+				:review3="review.fields.review3"
+				:cover="review.fields.bookCover.fields.file.url"
 			/>
 		</div>
 		<AppButtonLink

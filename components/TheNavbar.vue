@@ -51,6 +51,11 @@
 </template>
 
 <style scoped>
+	.nav__nav .router-link-exact-active {
+		color: var(--clr-primary);
+		transition: 0.3s all ease-out;
+	}
+
 	.nav-bg {
 		background-color: hsl(259, 35%, 9%, 0.9);
 		box-shadow: 0 0 25px hsl(190, 67%, 47%, 0.4);

@@ -49,7 +49,8 @@
 			</TransitionScale>
 		</button>
 		<form
-			class="search__search-bar bg-clr-input px-4 py-2 w-full max-w-[300px] rounded-lg flex items-center gap-3"
+			class="bg-clr-input px-4 py-2 w-full max-w-[300px] rounded-lg flex items-center gap-3 transition-[outline] duration-300"
+			:class="{ 'form-focused': isSearchBar }"
 		>
 			<button class="flex items-center">
 				<Icon
@@ -72,6 +73,10 @@
 	.search__list {
 		display: flex;
 		gap: 20px;
+	}
+
+	.form-focused {
+		outline: 1px solid white;
 	}
 
 	@media (max-width: 768px) {

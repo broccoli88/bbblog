@@ -21,6 +21,10 @@
 </template>
 
 <style scoped>
+	.footer__wrapper .router-link-exact-active {
+		color: var(--clr-primary);
+		transition: 0.3s all ease-out;
+	}
 	.footer__wrapper {
 		display: grid;
 		grid-template-columns: min-content 1fr;

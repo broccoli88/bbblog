@@ -108,11 +108,6 @@ li {
 	list-style: none;
 }
 
-.router-link-active {
-	color: var(--clr-primary);
-	transition: 0.3s all ease-out;
-}
-
 @media (min-width: 768px) {
 	#__nuxt {
 		font-size: var(--fsd-txt);

@@ -18,7 +18,9 @@
   },
   "dependencies": {
     "@nuxt/image": "^1.0.0",
+    "@pinia/nuxt": "^0.5.1",
     "contentful": "^10.6.5",
-    "nuxt-icon": "^0.6.1"
+    "nuxt-icon": "^0.6.1",
+    "pinia": "^2.1.7"
   }
 }

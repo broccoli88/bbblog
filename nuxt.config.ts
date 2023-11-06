@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
 	devtools: { enabled: false },
 	css: ["~/assets/css/main.css"],
-	modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "nuxt-icon"],
+	modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "nuxt-icon", "@pinia/nuxt"],
 	components: [
 		{
 			path: "~/components",
@@ -12,7 +12,10 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		//   contentful
 
-		space: process.env.NUXT_CONTENTFUL_SPACE,
-		accessToken: process.env.NUXT_CONTENTFUL_ACCESS_TOKEN,
+		// space: process.env.NUXT_CONTENTFUL_SPACE,
+		public: {
+			space: process.env.NUXT_CONTENTFUL_SPACE,
+			accessToken: process.env.NUXT_CONTENTFUL_ACCESS_TOKEN,
+		},
 	},
 });

@@ -1,7 +1,9 @@
 <script setup>
-	// const { $client } = useNuxtApp();
+	const reviewsStore = useReviewsStore();
 
-	// const data = await $client.getEntries();
+	onMounted(async () => {
+		await reviewsStore.fetchReviews();
+	});
 </script>
 <template>
 	<main class="isolate relative grid gap-44">

@@ -1,24 +1,45 @@
 <script setup>
 	const props = defineProps({
 		id: {
-			type: Number,
+			type: [Number, String],
 		},
 		title: {
+			type: String,
+		},
+		subtitle: {
 			type: String,
 		},
 		author: {
 			type: String,
 		},
-		review: {
-			type: Object,
+		review1: {
+			type: String,
+		},
+		review2: {
+			type: String,
+		},
+		review3: {
+			type: String,
 		},
 		release: {
 			type: String,
 		},
+		createdAt: {
+			type: String,
+		},
+		cover: {
+			type: String,
+		},
 	});
 
-	const id = toRef(props, "id");
-	const reviewLink = `reviews/${id.value}`;
+	const rawTitle = toRef(props, "title");
+	const rawSubtitle = toRef(props, "subtitle");
+
+	const titleSlug = computed(() => rawTitle.value.split(" ").join("-"));
+	const subTitleSlug = computed(() => rawSubtitle.value.split(" ").join("-"));
+	const title = `${titleSlug.value}-${subTitleSlug.value}`;
+
+	const reviewLink = `reviews/${title}`;
 </script>
 
 <template>
@@ -30,7 +51,7 @@
 				class="card__description isolate p-3 flex flex-col z-10 capitalize"
 			>
 				<p class="text-fsm-note md:text-fsd-note">{{ release }}</p>
-				<h3>{{ title }}</h3>
+				<h3>{{ props.title }}</h3>
 				<h4 class="mb-2">the final installment</h4>
 				<p class="text-fsm-note md:text-fsd-note">by: {{ author }}</p>
 				<AppButtonLink class="mt-auto md:mt-8 grid" :src="reviewLink">
