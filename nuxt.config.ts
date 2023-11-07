@@ -12,10 +12,8 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		//   contentful
 
-		public: {
-			space: process.env.NUXT_CONTENTFUL_SPACE,
-			accessToken: process.env.NUXT_CONTENTFUL_ACCESS_TOKEN,
-		},
+		space: process.env.NUXT_CONTENTFUL_SPACE,
+		accessToken: process.env.NUXT_CONTENTFUL_ACCESS_TOKEN,
 	},
 	image: {
 		domains: ["images.ctfassets.net"],

@@ -5,8 +5,13 @@ export const useReviewsStore = defineStore('reviewsStore', () => {
     const reviews = ref(null);
 
     const fetchReviews = async () => {
-        const response = await $contentful.getEntries();
-        reviews.value = response.items;
+        try {
+            const response = await $contentful.getEntries();
+            reviews.value = response.items;
+
+        } catch (err) {
+            console.log(err)
+        }
     };
 
 
