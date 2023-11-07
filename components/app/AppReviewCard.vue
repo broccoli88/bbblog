@@ -34,9 +34,16 @@
 
 	const rawTitle = toRef(props, "title");
 	const rawSubtitle = toRef(props, "subtitle");
+	const coverUrl = toRef(props, "cover");
 
 	const titleSlug = computed(() => rawTitle.value.split(" ").join("-"));
 	const subTitleSlug = computed(() => rawSubtitle.value.split(" ").join("-"));
+	const cover = computed(() =>
+		coverUrl.value.startsWith("https://")
+			? coverUrl.value
+			: `https://${coverUrl.value}`
+	);
+
 	const title = `${titleSlug.value}-${subTitleSlug.value}`;
 
 	const reviewLink = `reviews/${title}`;
@@ -46,7 +53,7 @@
 	<article class="card relative bg-clr-bg border border-clr-primary">
 		<SectionFrame />
 		<section class="card__content grid grid-cols-2">
-			<NuxtPicture src="/images/book-cover.png" class="card__img" />
+			<NuxtPicture :src="cover" class="card__img" />
 			<div
 				class="card__description isolate p-3 flex flex-col z-10 capitalize"
 			>
