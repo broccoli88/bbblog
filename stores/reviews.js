@@ -1,9 +1,16 @@
 import { defineStore } from 'pinia'
-import { useContentful } from '../composables/contentful';
+import { createClient } from 'contentful'
+
 export const useReviewsStore = defineStore('reviewsStore', () => {
 
+    const config = useRuntimeConfig()
+    const client = createClient({
+        space: config.public.space,
+        accessToken: config.public.accessToken
+    })
+
     const reviews = ref(null);
-    const client = useContentful()
+
 
     const fetchReviews = async () => {
         try {
