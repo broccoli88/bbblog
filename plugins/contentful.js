@@ -1,5 +1,5 @@
 import * as contentful from 'contentful'
-// import { createClient } from 'contentful'
+
 
 export default defineNuxtPlugin((nuxtApp) => {
     const config = useRuntimeConfig()

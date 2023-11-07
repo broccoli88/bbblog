@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
-
+import { useContentful } from '../composables/contentful';
 export const useReviewsStore = defineStore('reviewsStore', () => {
-    const { $contentful } = useNuxtApp();
+
     const reviews = ref(null);
+    const client = useContentful()
 
     const fetchReviews = async () => {
         try {
-            const response = await $contentful.getEntries();
+            const response = await client.getEntries()
             reviews.value = response.items;
 
         } catch (err) {
