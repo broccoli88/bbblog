@@ -1,11 +1,11 @@
-// import * as contentful from 'contentful'
-import { createClient } from 'contentful'
+import * as contentful from 'contentful'
+// import { createClient } from 'contentful'
 
 export default defineNuxtPlugin((nuxtApp) => {
     const config = useRuntimeConfig()
 
 
-    const client = createClient({
+    const client = contentful.createClient({
         space: config.public.space,
         accessToken: config.public.accessToken
     })
