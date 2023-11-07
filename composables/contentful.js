@@ -1,10 +1,10 @@
-import { createClient } from "contentful"
+import * as contentful from 'contentful'
 
 export const useContentful = () => {
 
     const config = useRuntimeConfig()
 
-    const client = createClient({
+    const client = contentful.createClient({
         space: config.public.space,
         accessToken: config.public.accessToken
     })
