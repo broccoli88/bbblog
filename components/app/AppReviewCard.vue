@@ -1,66 +1,28 @@
 <script setup>
 	const props = defineProps({
-		id: {
-			type: [Number, String],
-		},
-		title: {
-			type: String,
-		},
-		subtitle: {
-			type: String,
-		},
-		author: {
-			type: String,
-		},
-		review1: {
-			type: String,
-		},
-		review2: {
-			type: String,
-		},
-		review3: {
-			type: String,
-		},
-		release: {
-			type: String,
-		},
-		createdAt: {
-			type: String,
-		},
-		cover: {
-			type: String,
-		},
+		review: Object,
 	});
 
-	const rawTitle = toRef(props, "title");
-	const rawSubtitle = toRef(props, "subtitle");
-	const coverUrl = toRef(props, "cover");
+	const rawTitle = toRef(props.review, "title");
 
-	const titleSlug = computed(() => rawTitle.value.split(" ").join("-"));
-	const subTitleSlug = computed(() => rawSubtitle.value.split(" ").join("-"));
-	const cover = computed(() =>
-		coverUrl.value.startsWith("https://")
-			? coverUrl.value
-			: `https://${coverUrl.value}`
+	const titleSlug = computed(() =>
+		rawTitle.value.split(" ").join("-").toLowerCase()
 	);
-
-	const title = `${titleSlug.value}-${subTitleSlug.value}`;
-
-	const reviewLink = `reviews/${title}`;
+	const reviewLink = `/reviews/${titleSlug.value}`;
 </script>
 
 <template>
 	<article class="card relative bg-clr-bg border border-clr-primary">
 		<SectionFrame />
 		<section class="card__content grid grid-cols-2">
-			<NuxtPicture :src="cover" class="card__img" />
+			<NuxtPicture src="/images/book-cover.png" class="card__img" />
 			<div
 				class="card__description isolate p-3 flex flex-col z-10 capitalize"
 			>
-				<p class="text-fsm-note md:text-fsd-note">{{ release }}</p>
-				<h3>{{ props.title }}</h3>
+				<p class="text-fsm-note md:text-fsd-note"></p>
+				<h3></h3>
 				<h4 class="mb-2">the final installment</h4>
-				<p class="text-fsm-note md:text-fsd-note">by: {{ author }}</p>
+				<p class="text-fsm-note md:text-fsd-note">by:</p>
 				<AppButtonLink class="mt-auto md:mt-8 grid" :src="reviewLink">
 					check review
 				</AppButtonLink>

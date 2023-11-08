@@ -1,10 +1,4 @@
-<script setup>
-	const reviewsStore = useReviewsStore();
-
-	onMounted(async () => {
-		await reviewsStore.fetchReviews();
-	});
-</script>
+<script setup></script>
 <template>
 	<main class="isolate relative grid gap-44">
 		<NuxtPicture src="/images/bg-hero.webp" class="hero-bg" />

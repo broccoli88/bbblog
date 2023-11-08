@@ -27,10 +27,11 @@ export default {
                 "fsd-note": "12px",
             },
             colors: {
-                "clr-bg": " #140f1f",
-                "clr-text": " #e9e2d0",
-                "clr-primary": " #28adc8",
-                "clr-input": " #13162a",
+                "clr-bg": "#140f1f",
+                "clr-bg-lighter": "#1b1528",
+                "clr-text": "#e9e2d0",
+                "clr-primary": "#28adc8",
+                "clr-input": "#13162a",
             }
         },
     },

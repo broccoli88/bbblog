@@ -1,7 +1,4 @@
-<script setup>
-	const reviewsStore = useReviewsStore();
-	const { reviews } = storeToRefs(reviewsStore);
-</script>
+<script setup></script>
 
 <template>
 	<main class="wrapper">
@@ -9,20 +6,7 @@
 		<h1 class="mb-14">Reviews</h1>
 
 		<section class="review-grid">
-			<AppReviewCard
-				v-for="review in reviews"
-				:key="review.sys.id"
-				:id="review.sys.id"
-				:title="review.fields.bookTitle"
-				:subtitle="review.fields.bookSubtitle"
-				:author="review.fields.bookAuthor"
-				:release="review.fields.bookRelease"
-				:createdAt="review.fields.createdAt"
-				:review1="review.fields.review1"
-				:review2="review.fields.review2"
-				:review3="review.fields.review3"
-				:cover="review.fields.bookCover.fields.file.url"
-			/>
+			<AppReviewCard v-for="review in reviews" />
 		</section>
 	</main>
 </template>
