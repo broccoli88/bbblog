@@ -21,13 +21,15 @@
 <template>
 	<div class="grid gap-2">
 		<label :for="id" class="pl-5 text-clr-text">{{ label }}:</label>
-		<input
+		<textarea
+			cols="30"
+			rows="10"
 			type="text"
 			:placeholder="placeholder"
 			:id="id"
 			v-bind="$attrs"
 			@input="$emit('update:modelValue', $event.target.value)"
-			class="bg-clr-bg p-3 rounded-lg outline-none focus:outline-clr-text pl-5 placeholder:opacity-40 shadow-2xl"
+			class="bg-clr-bg p-3 rounded-lg outline-none focus:outline-clr-text pl-5 placeholder:opacity-40 resize-y"
 		/>
 	</div>
 </template>

@@ -1,4 +1,14 @@
 <script setup>
+	defineProps({
+		heading: {
+			type: String,
+			default: "Log In",
+		},
+		btn: {
+			type: String,
+			default: "Log In",
+		},
+	});
 	defineEmits(["submit-login"]);
 </script>
 
@@ -10,10 +20,10 @@
 		<SectionFrame />
 		<div class="isolate grid gap-5">
 			<h1 class="mb-10 text-center">
-				<slot name="heading"></slot>
+				<slot name="heading">{{ heading }}</slot>
 			</h1>
 			<slot></slot>
-			<AppButton class="my-10"> Log in </AppButton>
+			<AppButton class="my-10 text-3xl"> {{ btn }} </AppButton>
 		</div>
 	</form>
 </template>
