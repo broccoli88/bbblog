@@ -3,5 +3,6 @@
 	{ "name": "about", "link": "/about" },
 	{ "name": "contact", "link": "/contact" },
 	{ "name": "reviews", "link": "/reviews" },
-	{ "name": "blog", "link": "/blog" }
+	{ "name": "blog", "link": "/blog" },
+	{ "name": "admin", "link": "/admin/login" }
 ]
