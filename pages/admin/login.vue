@@ -2,6 +2,10 @@
 	const adminStore = useAdminStore(),
 		{ adminLoginState, isWrongLogin } = storeToRefs(adminStore);
 
+	definePageMeta({
+		layout: "admin",
+	});
+
 	const adminLoginInputData = reactive({
 		email: {
 			label: "Email",
@@ -20,6 +24,7 @@
 	<section
 		class="grid items-center w-full max-w-screen-sm mx-auto isolate relative"
 	>
+		<AppBackBtn />
 		<FormForm @submit-login="adminStore.logIn">
 			<template #heading> Log In</template>
 			<FormInput

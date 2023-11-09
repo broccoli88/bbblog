@@ -16,9 +16,7 @@
 		<SectionFrame />
 		<section class="card__content grid grid-cols-2">
 			<NuxtPicture src="/images/book-cover.png" class="card__img" />
-			<div
-				class="card__description isolate p-3 flex flex-col z-10 capitalize"
-			>
+			<div class="card__description p-3 flex flex-col z-10 capitalize">
 				<p class="text-fsm-note md:text-fsd-note"></p>
 				<h3></h3>
 				<h4 class="mb-2">the final installment</h4>

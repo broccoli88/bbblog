@@ -48,31 +48,43 @@
 <template>
 	<section class="isolate">
 		<FormForm :heading="heading" :btn="btn">
-			<FormFileInput
-				:label="adminCreateReviewInputData.cover.label"
-				:id="adminCreateReviewInputData.cover.id"
-			/>
-			<FormInput
-				:label="adminCreateReviewInputData.title.label"
-				:id="adminCreateReviewInputData.title.id"
-				:placeholder="adminCreateReviewInputData.title.placeholder"
-			/>
-			<FormInput
-				:label="adminCreateReviewInputData.subtitle.label"
-				:id="adminCreateReviewInputData.subtitle.id"
-				:placeholder="adminCreateReviewInputData.subtitle.placeholder"
-			/>
-			<FormInput
-				type="date"
-				:label="adminCreateReviewInputData.published.label"
-				:id="adminCreateReviewInputData.published.id"
-				:placeholder="adminCreateReviewInputData.published.placeholder"
-			/>
-			<FormInput
-				:label="adminCreateReviewInputData.author.label"
-				:id="adminCreateReviewInputData.author.id"
-				:placeholder="adminCreateReviewInputData.author.placeholder"
-			/>
+			<div class="grid grid-cols-[min-content_1fr] gap-10">
+				<FormFileInput
+					:label="adminCreateReviewInputData.cover.label"
+					:id="adminCreateReviewInputData.cover.id"
+				/>
+				<div class="grid gap-5">
+					<FormInput
+						:label="adminCreateReviewInputData.title.label"
+						:id="adminCreateReviewInputData.title.id"
+						:placeholder="
+							adminCreateReviewInputData.title.placeholder
+						"
+					/>
+					<FormInput
+						:label="adminCreateReviewInputData.subtitle.label"
+						:id="adminCreateReviewInputData.subtitle.id"
+						:placeholder="
+							adminCreateReviewInputData.subtitle.placeholder
+						"
+					/>
+					<FormInput
+						type="date"
+						:label="adminCreateReviewInputData.published.label"
+						:id="adminCreateReviewInputData.published.id"
+						:placeholder="
+							adminCreateReviewInputData.published.placeholder
+						"
+					/>
+					<FormInput
+						:label="adminCreateReviewInputData.author.label"
+						:id="adminCreateReviewInputData.author.id"
+						:placeholder="
+							adminCreateReviewInputData.author.placeholder
+						"
+					/>
+				</div>
+			</div>
 			<FormTextArea
 				:label="adminCreateReviewInputData.review_part_1.label"
 				:id="adminCreateReviewInputData.review_part_1.id"

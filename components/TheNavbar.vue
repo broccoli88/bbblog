@@ -22,9 +22,7 @@
 		class="py-5 fixed top-0 left-0 w-full z-[999] transition-colors duration-300"
 		ref="navRef"
 	>
-		<div
-			class="wrapper nav__wrapper flex flex-wrap justify-between gap-5 max-md:px-5 isolate relative"
-		>
+		<div class="wrapper flex flex-wrap justify-between gap-5 max-md:px-5">
 			<NuxtLink to="/" class="text-1xl">BookBestiary</NuxtLink>
 			<button class="md:hidden" @click.capture="toggleMenu">
 				<TransitionScale>

@@ -18,7 +18,7 @@
 		class="bg-[#1b1528] p-5 relative"
 	>
 		<SectionFrame />
-		<div class="isolate grid gap-5">
+		<div class="grid gap-5">
 			<h1 class="mb-10 text-center">
 				<slot name="heading">{{ heading }}</slot>
 			</h1>

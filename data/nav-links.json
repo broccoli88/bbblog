@@ -4,5 +4,5 @@
 	{ "name": "contact", "link": "/contact" },
 	{ "name": "reviews", "link": "/reviews" },
 	{ "name": "blog", "link": "/blog" },
-	{ "name": "admin", "link": "/admin/login" }
+	{ "name": "admin", "link": "/admin" }
 ]

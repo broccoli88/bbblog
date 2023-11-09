@@ -35,10 +35,7 @@
 				</li>
 			</ul>
 		</nav>
-		<button
-			class="flex items-center md:hidden"
-			@click="toggleCategoriesBar"
-		>
+		<button class="flex md:hidden mr-auto" @click="toggleCategoriesBar">
 			<TransitionScale>
 				<Icon
 					name="bi:chevron-bar-contract"
@@ -103,7 +100,7 @@
 			gap: 0;
 			text-align: center;
 			overflow: hidden;
-			position: relative;
+			/* position: relative; */
 		}
 	}
 </style>

@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 export const useAdminStore = defineStore("adminStore", () => {
     const supabase = useSupabaseClient();
 
-    // LOG IN
+    // Log in
 
     const isWrongLogin = ref(false);
     const adminLoginState = ref({
@@ -31,10 +31,23 @@ export const useAdminStore = defineStore("adminStore", () => {
         adminLoginState.value.pwd = ''
     };
 
+    // Log out
+
+    const logOut = async () => {
+        const { error } = await supabase.auth.signOut()
+
+        if (error) {
+            console.log(error)
+            return
+        }
+        navigateTo({ name: "index" })
+    }
+
 
     return {
         adminLoginState,
         isWrongLogin,
-        logIn
+        logIn,
+        logOut
     };
 });
