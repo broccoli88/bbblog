@@ -3,7 +3,7 @@
 
 	definePageMeta({
 		layout: "admin",
-		middleware: ["auth"],
+		// middleware: ["auth"],
 	});
 
 	const currentComponent = ref("AdminCreateReview");
@@ -15,6 +15,7 @@
 <template>
 	<main class="isolate grid grid-cols-[max-content_1fr] min-h-screen">
 		<AdminAsideNav />
+
 		<section class="py-10 mx-10">
 			<component :is="components[currentComponent]"></component>
 		</section>

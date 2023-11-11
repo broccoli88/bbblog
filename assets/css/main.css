@@ -1,14 +1,11 @@
 @font-face {
 	font-family: "Wisp";
-	src: url("assets/fonts/Wisp.otf") format("opentype");
-	font-weight: 400;
-	font-style: normal;
-	font-stretch: normal;
+	src: url("assets/fonts/Wisp.woff2") format("woff2");
 }
 @font-face {
 	font-family: "Savate";
-	src: url("assets/fonts/savate-regular.otf") format("opentype");
-	src: url("assets/fonts/savate-italique.otf") format("opentype");
+	src: url("assets/fonts/savate-regular.woff2") format("woff2");
+	src: url("assets/fonts/savate-italique.woff2") format("woff2");
 }
 
 @tailwind base;

@@ -24,7 +24,7 @@ export const useAdminStore = defineStore("adminStore", () => {
             isWrongLogin.value = true;
             return;
         }
-
+        await fetchAllGenres()
         await navigateTo({ name: "admin" });
 
         adminLoginState.value.email = ''
@@ -43,11 +43,36 @@ export const useAdminStore = defineStore("adminStore", () => {
         navigateTo({ name: "index" })
     }
 
+    // Fetch genres
+    const genres = ref([])
+
+    const fetchAllGenres = async () => {
+        const { data, error } = await supabase
+            .from('genres')
+            .select()
+            .order('genre_name')
+
+        if (error) {
+            console.log(error.details, error.message)
+            return
+        }
+        genres.value = data
+        console.log(data)
+
+    }
 
     return {
+        // Log in
         adminLoginState,
         isWrongLogin,
         logIn,
-        logOut
+
+        // Log out
+        logOut,
+
+        // Fetch genres
+        genres,
+        fetchAllGenres
+
     };
 });

@@ -23,6 +23,10 @@
 			id: "author",
 			placeholder: "Who wrote that crap ?",
 		},
+		genres: {
+			label: "Genres",
+			id: "genres",
+		},
 		review_part_1: {
 			label: "Review part 1",
 			id: "review-part-1",
@@ -43,11 +47,27 @@
 			id: "book-cover",
 		},
 	});
+
+	const state = ref({
+		cover: "",
+		title: "",
+		subtitle: "",
+		published: null,
+		author: "",
+		genres: [],
+		review_pt_1: "",
+		review_pt_2: "",
+		review_pt_3: "",
+	});
+
+	const submitReview = () => {
+		console.log(state.value);
+	};
 </script>
 
 <template>
 	<section class="isolate">
-		<FormForm :heading="heading" :btn="btn">
+		<FormForm :heading="heading" :btn="btn" @submit.prevent="submitReview">
 			<div class="grid grid-cols-[min-content_1fr] gap-10">
 				<FormFileInput
 					:label="adminCreateReviewInputData.cover.label"
@@ -60,6 +80,7 @@
 						:placeholder="
 							adminCreateReviewInputData.title.placeholder
 						"
+						v-model="state.title"
 					/>
 					<FormInput
 						:label="adminCreateReviewInputData.subtitle.label"
@@ -67,6 +88,7 @@
 						:placeholder="
 							adminCreateReviewInputData.subtitle.placeholder
 						"
+						v-model="state.subtitle"
 					/>
 					<FormInput
 						type="date"
@@ -75,6 +97,7 @@
 						:placeholder="
 							adminCreateReviewInputData.published.placeholder
 						"
+						v-model="state.published"
 					/>
 					<FormInput
 						:label="adminCreateReviewInputData.author.label"
@@ -82,6 +105,13 @@
 						:placeholder="
 							adminCreateReviewInputData.author.placeholder
 						"
+						v-model="state.author"
+					/>
+
+					<FormSelectInput
+						:label="adminCreateReviewInputData.genres.label"
+						:id="adminCreateReviewInputData.genres.id"
+						v-model="state.genres"
 					/>
 				</div>
 			</div>
@@ -91,6 +121,7 @@
 				:placeholder="
 					adminCreateReviewInputData.review_part_1.placeholder
 				"
+				v-model="state.review_pt_1"
 			/>
 			<FormTextArea
 				:label="adminCreateReviewInputData.review_part_2.label"
@@ -98,6 +129,7 @@
 				:placeholder="
 					adminCreateReviewInputData.review_part_2.placeholder
 				"
+				v-model="state.review_pt_2"
 			/>
 			<FormTextArea
 				:label="adminCreateReviewInputData.review_part_3.label"
@@ -105,6 +137,7 @@
 				:placeholder="
 					adminCreateReviewInputData.review_part_3.placeholder
 				"
+				v-model="state.review_pt_3"
 			/>
 		</FormForm>
 	</section>

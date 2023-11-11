@@ -49,9 +49,9 @@
 				@click="clearImgSelection"
 				v-if="isImgUploaded"
 				title="clear image selection"
-				class="absolute -top-10 -right-10 z-10 p-1 border border-clr-primary rounded-full hover:bg-clr-primary duration-300"
+				class="absolute -top-7 -right-7 z-10 w-7 aspect-square border border-clr-primary rounded-full hover:bg-clr-primary duration-300 grid place-content-center"
 			>
-				<Icon name="ic:outline-close" size="30px" />
+				<Icon name="ic:outline-close" size="20px" />
 			</button>
 			<img
 				src=""
