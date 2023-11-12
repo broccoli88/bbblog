@@ -24,7 +24,6 @@ export const useAdminStore = defineStore("adminStore", () => {
             isWrongLogin.value = true;
             return;
         }
-        await fetchAllGenres()
         await navigateTo({ name: "admin" });
 
         adminLoginState.value.email = ''
@@ -57,8 +56,6 @@ export const useAdminStore = defineStore("adminStore", () => {
             return
         }
         genres.value = data
-        console.log(data)
-
     }
 
     return {

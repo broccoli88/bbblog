@@ -3,17 +3,17 @@
 	const btn = "post review";
 
 	const adminCreateReviewInputData = reactive({
-		title: {
+		book_title: {
 			label: "Book title",
 			id: "title",
 			placeholder: "Enter book title",
 		},
-		subtitle: {
+		book_subtitle: {
 			label: "Book subtitle",
 			id: "subtitle",
 			placeholder: "Enter book subtitle",
 		},
-		published: {
+		published_at: {
 			label: "Published",
 			id: "published",
 			placeholder: "When was published ?",
@@ -49,18 +49,36 @@
 	});
 
 	const state = ref({
-		cover: "",
-		title: "",
-		subtitle: "",
-		published: null,
+		book_title: "",
+		book_subtitle: "",
+		published_at: null,
 		author: "",
-		genres: [],
 		review_pt_1: "",
 		review_pt_2: "",
 		review_pt_3: "",
+		cover_url: "",
 	});
 
-	const submitReview = () => {
+	const selectedGenres = ref([]);
+
+	const updateGenre = (genreArr) => {
+		selectedGenres.value = genreArr.map((g) => g.genre_name);
+	};
+	const updateCover = (imgPath) => {
+		state.value.cover_url = imgPath;
+	};
+
+	const supabase = useSupabaseClient();
+
+	const submitReview = async () => {
+		// const { error } = await supabase.from("reviews").insert(state.value);
+
+		// if (error) {
+		// 	console.log(error);
+		// 	console.log("message: ", error.message);
+		// 	return;
+		// }
+
 		console.log(state.value);
 	};
 </script>
@@ -68,36 +86,37 @@
 <template>
 	<section class="isolate">
 		<FormForm :heading="heading" :btn="btn" @submit.prevent="submitReview">
-			<div class="grid grid-cols-[min-content_1fr] gap-10">
+			<section class="grid grid-cols-[min-content_1fr] gap-10">
 				<FormFileInput
 					:label="adminCreateReviewInputData.cover.label"
 					:id="adminCreateReviewInputData.cover.id"
+					@update-cover="updateCover"
 				/>
 				<div class="grid gap-5">
 					<FormInput
-						:label="adminCreateReviewInputData.title.label"
-						:id="adminCreateReviewInputData.title.id"
+						:label="adminCreateReviewInputData.book_title.label"
+						:id="adminCreateReviewInputData.book_title.id"
 						:placeholder="
-							adminCreateReviewInputData.title.placeholder
+							adminCreateReviewInputData.book_title.placeholder
 						"
-						v-model="state.title"
+						v-model="state.book_title"
 					/>
 					<FormInput
-						:label="adminCreateReviewInputData.subtitle.label"
-						:id="adminCreateReviewInputData.subtitle.id"
+						:label="adminCreateReviewInputData.book_subtitle.label"
+						:id="adminCreateReviewInputData.book_subtitle.id"
 						:placeholder="
-							adminCreateReviewInputData.subtitle.placeholder
+							adminCreateReviewInputData.book_subtitle.placeholder
 						"
-						v-model="state.subtitle"
+						v-model="state.book_subtitle"
 					/>
 					<FormInput
 						type="date"
-						:label="adminCreateReviewInputData.published.label"
-						:id="adminCreateReviewInputData.published.id"
+						:label="adminCreateReviewInputData.published_at.label"
+						:id="adminCreateReviewInputData.published_at.id"
 						:placeholder="
-							adminCreateReviewInputData.published.placeholder
+							adminCreateReviewInputData.published_at.placeholder
 						"
-						v-model="state.published"
+						v-model="state.published_at"
 					/>
 					<FormInput
 						:label="adminCreateReviewInputData.author.label"
@@ -107,14 +126,10 @@
 						"
 						v-model="state.author"
 					/>
-
-					<FormSelectInput
-						:label="adminCreateReviewInputData.genres.label"
-						:id="adminCreateReviewInputData.genres.id"
-						v-model="state.genres"
-					/>
 				</div>
-			</div>
+			</section>
+			<FormSelectCollection @update-genre="updateGenre" />
+
 			<FormTextArea
 				:label="adminCreateReviewInputData.review_part_1.label"
 				:id="adminCreateReviewInputData.review_part_1.id"

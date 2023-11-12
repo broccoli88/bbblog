@@ -31,6 +31,7 @@ export default {
                 "clr-bg-lighter": "#1b1528",
                 "clr-text": "#e9e2d0",
                 "clr-primary": "#28adc8",
+                "clr-secondary": "#312155",
                 "clr-input": "#13162a",
             }
         },

@@ -15,14 +15,20 @@
 		modelValue: String,
 	});
 
-	defineEmits(["update:modelValue"]);
+	const emits = defineEmits(["update-cover"]);
+
+	const formStore = useFormStore();
 
 	const fileInput = ref();
 	const fileInputPreview = ref();
 	const isImgUploaded = ref(false);
+	const imgPath = ref("");
 
 	const displayCoverPreview = () => {
-		if (!fileInput.value.files && !fileInput.value.files[0]) return;
+		const file = fileInput.value.files;
+
+		if (!file && !file[0]) return;
+
 		const reader = new FileReader();
 
 		reader.onload = (e) => {
@@ -31,13 +37,20 @@
 		reader.readAsDataURL(fileInput.value.files[0]);
 		fileInput.value.disabled = true;
 		isImgUploaded.value = true;
+
+		imgPath.value = `covers/${file[0].name}`;
+		emits("update-cover", imgPath.value);
+
+		formStore.uploadCover(file);
 	};
 
-	const clearImgSelection = () => {
-		fileInput.value.disabled = false;
-		fileInput.value.value = null;
-		fileInputPreview.value.src = "";
-		isImgUploaded.value = false;
+	const clearCoverSelection = () => {
+		formStore.clearCoverSelection(
+			imgPath.value,
+			fileInput.value,
+			fileInputPreview.value,
+			isImgUploaded.value
+		);
 	};
 </script>
 
@@ -45,14 +58,15 @@
 	<div class="grid gap-2 relative w-min">
 		<label :for="id" class="pl-5 text-clr-text">{{ label }}:</label>
 		<div class="file-input-wrapper">
-			<button
-				@click="clearImgSelection"
+			<div
+				type="button"
+				@click="clearCoverSelection"
 				v-if="isImgUploaded"
 				title="clear image selection"
 				class="absolute -top-7 -right-7 z-10 w-7 aspect-square border border-clr-primary rounded-full hover:bg-clr-primary duration-300 grid place-content-center"
 			>
 				<Icon name="ic:outline-close" size="20px" />
-			</button>
+			</div>
 			<img
 				src=""
 				alt=""
