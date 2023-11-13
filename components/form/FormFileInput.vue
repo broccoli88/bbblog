@@ -18,11 +18,11 @@
 	const emits = defineEmits(["update-cover"]);
 
 	const formStore = useFormStore();
+	const { cover } = storeToRefs(formStore);
 
 	const fileInput = ref();
 	const fileInputPreview = ref();
-	const isImgUploaded = ref(false);
-	const imgPath = ref("");
+	const isCoverSelected = ref(false);
 
 	const displayCoverPreview = () => {
 		const file = fileInput.value.files;
@@ -35,22 +35,18 @@
 			fileInputPreview.value.src = e.target.result;
 		};
 		reader.readAsDataURL(fileInput.value.files[0]);
-		fileInput.value.disabled = true;
-		isImgUploaded.value = true;
+		isCoverSelected.value = true;
 
-		imgPath.value = `covers/${file[0].name}`;
-		emits("update-cover", imgPath.value);
-
-		formStore.uploadCover(file);
+		const imgPath = `covers/${file[0].name}`;
+		cover.value = file;
+		emits("update-cover", imgPath);
 	};
 
 	const clearCoverSelection = () => {
-		formStore.clearCoverSelection(
-			imgPath.value,
-			fileInput.value,
-			fileInputPreview.value,
-			isImgUploaded.value
-		);
+		fileInput.value.value = null;
+		fileInputPreview.value.src = "";
+		cover.value = null;
+		isCoverSelected.value = false;
 	};
 </script>
 
@@ -61,7 +57,7 @@
 			<div
 				type="button"
 				@click="clearCoverSelection"
-				v-if="isImgUploaded"
+				v-if="isCoverSelected"
 				title="clear image selection"
 				class="absolute -top-7 -right-7 z-10 w-7 aspect-square border border-clr-primary rounded-full hover:bg-clr-primary duration-300 grid place-content-center"
 			>
@@ -77,6 +73,7 @@
 				type="file"
 				accept="image/*"
 				:id="id"
+				:disabled="isCoverSelected"
 				class="file-input"
 				@change="displayCoverPreview"
 				ref="fileInput"

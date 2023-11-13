@@ -13,9 +13,11 @@ export const useFormStore = defineStore('formStore', () => {
         cover_url: "",
     });
 
+    const pending = ref(false);
+
     // Image upload to subabase
 
-    const pending = ref(false);
+    const cover = ref(null)
 
     const uploadCover = async (files) => {
         try {
@@ -38,33 +40,6 @@ export const useFormStore = defineStore('formStore', () => {
         } finally {
             pending.value = false
         }
-    };
-
-    const clearCoverSelection = (imgPath, file, preview, confirmation) => {
-        try {
-            pending.value = true
-
-            const { error } = supabase.storage
-                .from('book-bestiary')
-                .remove([imgPath])
-
-            if (error) {
-                console.log(error)
-                return
-            }
-
-            file.disabled = false;
-            file.value = null;
-            preview.src = "";
-            confirmation = false;
-
-        } catch (error) {
-            console.log(error)
-        } finally {
-            pending.value = false
-        }
-
-
     };
 
     // Insert review
@@ -119,8 +94,6 @@ export const useFormStore = defineStore('formStore', () => {
     // Submit review
 
     const submitReview = async () => {
-
-
         try {
             pending.value = true
 
@@ -129,6 +102,7 @@ export const useFormStore = defineStore('formStore', () => {
             if (!selectedGenres.value) return
 
             await insertGenres(reviewId, selectedGenres.value)
+            await uploadCover(cover.value)
 
         } catch (error) {
             console.log(error)
@@ -142,6 +116,7 @@ export const useFormStore = defineStore('formStore', () => {
         state,
         uploadCover,
         clearCoverSelection,
+        cover,
         selectedGenres,
         submitReview
     }
