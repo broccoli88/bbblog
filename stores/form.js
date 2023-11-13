@@ -115,7 +115,6 @@ export const useFormStore = defineStore('formStore', () => {
     return {
         state,
         uploadCover,
-        clearCoverSelection,
         cover,
         selectedGenres,
         submitReview

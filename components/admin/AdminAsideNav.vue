@@ -1,4 +1,5 @@
 <script setup>
+	defineEmits(["change-panel"]);
 	const adminStore = useAdminStore();
 </script>
 
@@ -7,10 +8,21 @@
 		class="admin-nav bg-clr-bg-lighter p-10 grid grid-rows-[100px_1fr_min-content] h-screen relative"
 	>
 		<p class="font-wisp text-5xl">Admin Panel</p>
-		<nav class="shadow-xl isolate">
+		<nav class="shadow-xl isolate flex flex-col gap-5">
 			<li>
-				<button class="hover:text-clr-primary duration-300">
+				<button
+					@click="$emit('change-panel', 'AdminCreateReview')"
+					class="hover:text-clr-primary duration-300"
+				>
 					Create review
+				</button>
+			</li>
+			<li>
+				<button
+					@click="$emit('change-panel', 'AdminManageReviews')"
+					class="hover:text-clr-primary duration-300"
+				>
+					Manage reviews
 				</button>
 			</li>
 		</nav>
