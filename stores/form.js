@@ -2,7 +2,16 @@ import { defineStore } from 'pinia'
 
 export const useFormStore = defineStore('formStore', () => {
     const supabase = useSupabaseClient();
-    const state = ref({})
+    const state = ref({
+        book_title: "",
+        book_subtitle: "",
+        published_at: null,
+        author: "",
+        review_pt_1: "",
+        review_pt_2: "",
+        review_pt_3: "",
+        cover_url: "",
+    });
 
     // Image upload to subabase
 
@@ -58,13 +67,82 @@ export const useFormStore = defineStore('formStore', () => {
 
     };
 
-    const submitReview = () => {
+    // Insert review
+
+    const insertReview = async () => {
+        try {
+            const { data, error } =
+                await supabase
+                    .from("reviews")
+                    .insert(state.value)
+                    .select();
+
+            if (error) {
+                console.log(error);
+                return;
+            }
+
+            return data[0].review_id
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // Insert Genre
+
+    const selectedGenres = ref([]);
+
+    const insertGenres = async (reviewId, genresArr) => {
+        for (let i = 0; i < genresArr.length; i++) {
+            if (!reviewId) {
+                throw Error("no review id");
+            }
+            try {
+                const { data, error } = await supabase
+                    .from("review_genres")
+                    .insert([
+                        {
+                            review_id: reviewId,
+                            genre_id: genresArr[i],
+                        },
+                    ]);
+
+                if (error) {
+                    console.log(error);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
+
+    // Submit review
+
+    const submitReview = async () => {
 
 
-    }
+        try {
+            pending.value = true
+
+            const reviewId = await insertReview()
+
+            if (!selectedGenres.value) return
+
+            await insertGenres(reviewId, selectedGenres.value)
+
+        } catch (error) {
+            console.log(error)
+        } finally {
+            pending.value = false
+        }
+    };
+
 
     return {
+        state,
         uploadCover,
-        clearCoverSelection
+        clearCoverSelection,
+        selectedGenres,
+        submitReview
     }
 })

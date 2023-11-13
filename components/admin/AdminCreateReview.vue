@@ -1,4 +1,7 @@
 <script setup>
+	const formStore = useFormStore();
+	const { state, selectedGenres } = storeToRefs(formStore);
+
 	const heading = "Create review";
 	const btn = "post review";
 
@@ -48,44 +51,21 @@
 		},
 	});
 
-	const state = ref({
-		book_title: "",
-		book_subtitle: "",
-		published_at: null,
-		author: "",
-		review_pt_1: "",
-		review_pt_2: "",
-		review_pt_3: "",
-		cover_url: "",
-	});
-
-	const selectedGenres = ref([]);
-
 	const updateGenre = (genreArr) => {
-		selectedGenres.value = genreArr.map((g) => g.genre_name);
+		selectedGenres.value = genreArr.map((g) => g.genre_id);
 	};
 	const updateCover = (imgPath) => {
 		state.value.cover_url = imgPath;
-	};
-
-	const supabase = useSupabaseClient();
-
-	const submitReview = async () => {
-		// const { error } = await supabase.from("reviews").insert(state.value);
-
-		// if (error) {
-		// 	console.log(error);
-		// 	console.log("message: ", error.message);
-		// 	return;
-		// }
-
-		console.log(state.value);
 	};
 </script>
 
 <template>
 	<section class="isolate">
-		<FormForm :heading="heading" :btn="btn" @submit.prevent="submitReview">
+		<FormForm
+			:heading="heading"
+			:btn="btn"
+			@submit.prevent="formStore.submitReview"
+		>
 			<section class="grid grid-cols-[min-content_1fr] gap-10">
 				<FormFileInput
 					:label="adminCreateReviewInputData.cover.label"

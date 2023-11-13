@@ -3,7 +3,7 @@
 
 	definePageMeta({
 		layout: "admin",
-		// middleware: ["auth"],
+		middleware: ["auth"],
 	});
 
 	const currentComponent = ref("AdminCreateReview");

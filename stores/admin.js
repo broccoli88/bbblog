@@ -56,7 +56,10 @@ export const useAdminStore = defineStore("adminStore", () => {
             return
         }
         genres.value = data
+
     }
+
+
 
     return {
         // Log in
@@ -70,6 +73,5 @@ export const useAdminStore = defineStore("adminStore", () => {
         // Fetch genres
         genres,
         fetchAllGenres
-
     };
 });
