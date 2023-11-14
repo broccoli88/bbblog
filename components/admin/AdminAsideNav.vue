@@ -1,6 +1,6 @@
 <script setup>
 	defineEmits(["change-panel"]);
-	const adminStore = useAdminStore();
+	const formStore = useFormStore();
 </script>
 
 <template>
@@ -28,7 +28,7 @@
 		</nav>
 
 		<div class="grid gap-3">
-			<AppButton @click="adminStore.logOut">Log out</AppButton>
+			<AppButton @click="formStore.logOut">Log out</AppButton>
 			<AppButton @click="navigateTo({ name: 'index' })"
 				>Go to main</AppButton
 			>

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { useVuelidate } from '@vuelidate/core'
-import { required, minLength, helpers, email } from '@vuelidate/validators'
+import { required, minLength, email, helpers } from '@vuelidate/validators'
 
 export const useFormStore = defineStore('formStore', () => {
     const supabase = useSupabaseClient();
@@ -95,6 +95,8 @@ export const useFormStore = defineStore('formStore', () => {
 
     // Insert Genre
 
+    const isGenreEmpty = ref(false)
+
     const insertGenres = async (reviewId, genresArr) => {
         for (let i = 0; i < genresArr.length; i++) {
             if (!reviewId) {
@@ -119,13 +121,31 @@ export const useFormStore = defineStore('formStore', () => {
         }
     };
 
+    // Clear fields
+
+    const clearCreateReviewForm = () => {
+        createReviewState.value.book_title = ''
+        createReviewState.value.book_subtitle = ''
+        createReviewState.value.published_at = null
+        createReviewState.value.author = ''
+        createReviewState.value.review_pt_1 = ''
+        createReviewState.value.review_pt_2 = ''
+        createReviewState.value.review_pt_3 = ''
+        createReviewState.value.cover_url = ''
+        createReviewState.value.genres = []
+        isGenreEmpty.value = false
+    }
+
     // Submit review
 
     const submitReview = async () => {
         try {
 
             const isFormCorrect = await v.value.$validate()
-            if (!isFormCorrect) return
+            if (!isFormCorrect || !createReviewState.value.genres) {
+                isGenreEmpty.value = true
+                return
+            }
 
             pending.value = true
 
@@ -133,6 +153,7 @@ export const useFormStore = defineStore('formStore', () => {
 
             await insertGenres(reviewId, createReviewState.value.genres)
             await uploadCover(cover.value)
+            clearCreateReviewForm()
             v.value.$reset()
 
         } catch (error) {
@@ -143,28 +164,22 @@ export const useFormStore = defineStore('formStore', () => {
     };
 
 
+
     // Login validation
 
-
-    const isLoginWrong = ref(false);
-
+    const isLoginWrong = ref(false)
     const adminLoginState = ref({
-        email: "",
-        pwd: "",
-    });
-
-    const adminLoginRules = {
-        email: { required, email },
-        pwd: { required }
-    }
-
-    const vL = useVuelidate(adminLoginRules, adminLoginState)
+        email: '',
+        pwd: ''
+    })
 
 
     const logIn = async () => {
-        const isFormCorrect = await v.value.$validate()
-        if (!isFormCorrect) return
 
+        if (!adminLoginState.value.email || !adminLoginState.value.pwd) {
+            isLoginWrong.value = true
+            return
+        }
 
         try {
             pending.value = true
@@ -176,13 +191,14 @@ export const useFormStore = defineStore('formStore', () => {
 
             if (error) {
                 console.log(error);
-                isWrongLogin.value = true;
+                isLoginWrong.value = true
                 return;
             }
             await navigateTo({ name: "admin" });
 
             adminLoginState.value.email = ''
             adminLoginState.value.pwd = ''
+            isLoginWrong.value = false
 
         } catch (error) {
             console.log(error)
@@ -201,14 +217,15 @@ export const useFormStore = defineStore('formStore', () => {
             const { error } = await supabase.auth.signOut()
 
             if (error) {
-                console.log(error)
+                console.log(error.message)
                 return
             }
             navigateTo({ name: "index" })
         } catch (error) {
             console.log(error)
+
         } finally {
-            pending.value = falase
+            pending.value = false
         }
     }
 
@@ -222,8 +239,9 @@ export const useFormStore = defineStore('formStore', () => {
         v,
 
         // admin login
-        vL,
+        adminLoginState,
         isLoginWrong,
+        isGenreEmpty,
         logIn,
         logOut
 

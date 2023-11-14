@@ -1,6 +1,6 @@
 <script setup>
 	const formStore = useFormStore();
-	const { createReviewState, v } = storeToRefs(formStore);
+	const { createReviewState, v, isGenreEmpty } = storeToRefs(formStore);
 
 	const heading = "Create review";
 	const btn = "post review";
@@ -113,7 +113,11 @@
 					/>
 				</div>
 			</section>
-			<FormSelectCollection :v="v.genres" @update-genre="updateGenre" />
+			<FormSelectCollection
+				:v="v.genres"
+				:genresValidation="isGenreEmpty"
+				@update-genre="updateGenre"
+			/>
 
 			<FormTextArea
 				:label="adminCreateReviewInputData.review_part_1.label"
@@ -140,7 +144,7 @@
 					adminCreateReviewInputData.review_part_3.placeholder
 				"
 				:v="v.review_pt_3"
-				v-model="state.review_pt_3"
+				v-model="createReviewState.review_pt_3"
 			/>
 		</FormForm>
 	</section>

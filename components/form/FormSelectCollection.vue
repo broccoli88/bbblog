@@ -1,6 +1,7 @@
 <script setup>
 	defineProps({
 		v: Object,
+		genresValidation: Boolean,
 	});
 	const emits = defineEmits(["update-genre"]);
 
@@ -57,11 +58,11 @@
 				>
 			</div>
 			<div
-				v-if="selectedGenreList.length > 0 || v.$error"
-				:class="v.$error ? 'create-review-error' : ''"
+				v-if="selectedGenreList.length > 0 || genresValidation"
+				:class="genresValidation ? 'create-review-error' : ''"
 				class="p-5 bg-clr-bg rounded-lg flex flex-wrap gap-3"
 			>
-				<p v-if="v.$error">{{ v.$errors[0].$message }}</p>
+				<p v-if="genresValidation">{{ v.$errors[0].$message }}</p>
 				<div
 					v-for="genre in selectedGenreList"
 					:key="genre.genre_id"
