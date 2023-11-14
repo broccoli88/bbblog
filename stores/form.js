@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { useVuelidate } from '@vuelidate/core'
-import { required, minLength, email, helpers } from '@vuelidate/validators'
+import { required, minLength, helpers } from '@vuelidate/validators'
 
 export const useFormStore = defineStore('formStore', () => {
     const supabase = useSupabaseClient();
@@ -140,7 +140,6 @@ export const useFormStore = defineStore('formStore', () => {
 
     const submitReview = async () => {
         try {
-
             const isFormCorrect = await v.value.$validate()
             if (!isFormCorrect || !createReviewState.value.genres) {
                 isGenreEmpty.value = true
@@ -163,8 +162,6 @@ export const useFormStore = defineStore('formStore', () => {
         }
     };
 
-
-
     // Login validation
 
     const isLoginWrong = ref(false)
@@ -172,7 +169,6 @@ export const useFormStore = defineStore('formStore', () => {
         email: '',
         pwd: ''
     })
-
 
     const logIn = async () => {
 
@@ -231,6 +227,7 @@ export const useFormStore = defineStore('formStore', () => {
 
 
     return {
+        pending,
         // review creation
         createReviewState,
         uploadCover,
