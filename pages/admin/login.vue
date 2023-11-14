@@ -1,6 +1,6 @@
 <script setup>
-	const adminStore = useAdminStore(),
-		{ adminLoginState, isWrongLogin } = storeToRefs(adminStore);
+	const formStore = useFormStore();
+	const { adminLoginState, isLoginWrong } = storeToRefs(formStore);
 
 	definePageMeta({
 		layout: "admin",
@@ -25,29 +25,28 @@
 		class="grid items-center w-full max-w-screen-sm mx-auto isolate relative"
 	>
 		<AppBackBtn />
-		<FormForm @submit-login="adminStore.logIn">
+		<FormForm @submit-login="formStore.logIn">
 			<template #heading> Log In</template>
-			<FormInput
+
+			<FormLoginInput
 				type="email"
 				:label="adminLoginInputData.email.label"
 				:id="adminLoginInputData.email.id"
 				:placeholder="adminLoginInputData.email.placeholder"
 				v-model="adminLoginState.email"
 			/>
-			<FormInput
+
+			<FormLoginInput
 				type="password"
 				:label="adminLoginInputData.pwd.label"
 				:id="adminLoginInputData.pwd.id"
 				:placeholder="adminLoginInputData.pwd.placeholder"
 				v-model="adminLoginState.pwd"
 			/>
-			<p
-				v-if="isWrongLogin"
-				class="text-red-800 absolute bottom-3 left-1/2 -translate-x-1/2 text-md"
-			>
-				Coś pojebałeś/łaś :]
-			</p>
 		</FormForm>
+		<p v-if="isLoginWrong" class="text-clr-error text-center mt-5">
+			Coś pojebałeś/łaś :]
+		</p>
 	</section>
 </template>
 

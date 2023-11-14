@@ -12,13 +12,14 @@
 			type: String,
 			default: "",
 		},
+		v: Object,
 		modelValue: String,
 	});
 
 	const emits = defineEmits(["update-cover"]);
 
 	const formStore = useFormStore();
-	const { cover } = storeToRefs(formStore);
+	const { cover, createReviewState } = storeToRefs(formStore);
 
 	const fileInput = ref();
 	const fileInputPreview = ref();
@@ -47,6 +48,7 @@
 		fileInputPreview.value.src = "";
 		cover.value = null;
 		isCoverSelected.value = false;
+		createReviewState.value.cover_url = "";
 	};
 </script>
 
@@ -55,7 +57,6 @@
 		<label :for="id" class="pl-5 text-clr-text">{{ label }}:</label>
 		<div class="file-input-wrapper">
 			<div
-				type="button"
 				@click="clearCoverSelection"
 				v-if="isCoverSelected"
 				title="clear image selection"
@@ -67,6 +68,7 @@
 				src=""
 				alt=""
 				class="file-input-preview"
+				:class="{ 'show-cover': isCoverSelected }"
 				ref="fileInputPreview"
 			/>
 			<input
@@ -74,9 +76,11 @@
 				accept="image/*"
 				:id="id"
 				:disabled="isCoverSelected"
-				class="file-input"
 				@change="displayCoverPreview"
+				@blur="v.$touch"
 				ref="fileInput"
+				:class="v.$error ? 'create-review-error' : ''"
+				class="file-input"
 			/>
 		</div>
 	</div>
@@ -88,7 +92,7 @@
 		flex-direction: column;
 		width: 300px;
 		aspect-ratio: 2 / 3;
-
+		border: none;
 		border: 1px solid var(--clr-primary);
 		position: relative;
 	}
@@ -100,8 +104,13 @@
 		width: 100%;
 		height: 100%;
 		z-index: 1;
+		opacity: 0;
 
 		pointer-events: none;
+	}
+
+	.show-cover {
+		opacity: 1;
 	}
 
 	.file-input::file-selector-button,
@@ -113,5 +122,9 @@
 		width: 100%;
 		height: 100%;
 		opacity: 1;
+	}
+
+	.file-input-wrapper:has(.file-input.create-review-error) {
+		border: none;
 	}
 </style>

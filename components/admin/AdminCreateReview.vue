@@ -1,6 +1,6 @@
 <script setup>
 	const formStore = useFormStore();
-	const { state, selectedGenres } = storeToRefs(formStore);
+	const { createReviewState, v, isGenreEmpty } = storeToRefs(formStore);
 
 	const heading = "Create review";
 	const btn = "post review";
@@ -52,10 +52,10 @@
 	});
 
 	const updateGenre = (genreArr) => {
-		selectedGenres.value = genreArr.map((g) => g.genre_id);
+		createReviewState.value.genres = genreArr.map((g) => g.genre_id);
 	};
 	const updateCover = (imgPath) => {
-		state.value.cover_url = imgPath;
+		createReviewState.value.cover_url = imgPath;
 	};
 </script>
 
@@ -70,6 +70,7 @@
 				<FormFileInput
 					:label="adminCreateReviewInputData.cover.label"
 					:id="adminCreateReviewInputData.cover.id"
+					:v="v.cover_url"
 					@update-cover="updateCover"
 				/>
 				<div class="grid gap-5">
@@ -79,7 +80,8 @@
 						:placeholder="
 							adminCreateReviewInputData.book_title.placeholder
 						"
-						v-model="state.book_title"
+						:v="v.book_title"
+						v-model="createReviewState.book_title"
 					/>
 					<FormInput
 						:label="adminCreateReviewInputData.book_subtitle.label"
@@ -87,7 +89,8 @@
 						:placeholder="
 							adminCreateReviewInputData.book_subtitle.placeholder
 						"
-						v-model="state.book_subtitle"
+						:v="v.book_subtitle"
+						v-model="createReviewState.book_subtitle"
 					/>
 					<FormInput
 						type="date"
@@ -96,7 +99,8 @@
 						:placeholder="
 							adminCreateReviewInputData.published_at.placeholder
 						"
-						v-model="state.published_at"
+						:v="v.published_at"
+						v-model="createReviewState.published_at"
 					/>
 					<FormInput
 						:label="adminCreateReviewInputData.author.label"
@@ -104,11 +108,16 @@
 						:placeholder="
 							adminCreateReviewInputData.author.placeholder
 						"
-						v-model="state.author"
+						:v="v.author"
+						v-model="createReviewState.author"
 					/>
 				</div>
 			</section>
-			<FormSelectCollection @update-genre="updateGenre" />
+			<FormSelectCollection
+				:v="v.genres"
+				:genresValidation="isGenreEmpty"
+				@update-genre="updateGenre"
+			/>
 
 			<FormTextArea
 				:label="adminCreateReviewInputData.review_part_1.label"
@@ -116,7 +125,8 @@
 				:placeholder="
 					adminCreateReviewInputData.review_part_1.placeholder
 				"
-				v-model="state.review_pt_1"
+				:v="v.review_pt_1"
+				v-model="createReviewState.review_pt_1"
 			/>
 			<FormTextArea
 				:label="adminCreateReviewInputData.review_part_2.label"
@@ -124,7 +134,8 @@
 				:placeholder="
 					adminCreateReviewInputData.review_part_2.placeholder
 				"
-				v-model="state.review_pt_2"
+				:v="v.review_pt_2"
+				v-model="createReviewState.review_pt_2"
 			/>
 			<FormTextArea
 				:label="adminCreateReviewInputData.review_part_3.label"
@@ -132,7 +143,8 @@
 				:placeholder="
 					adminCreateReviewInputData.review_part_3.placeholder
 				"
-				v-model="state.review_pt_3"
+				:v="v.review_pt_3"
+				v-model="createReviewState.review_pt_3"
 			/>
 		</FormForm>
 	</section>

@@ -23,7 +23,7 @@
 			name="genres"
 			:id="id"
 			v-bind="$attrs"
-			class="bg-clr-bg py-3 rounded-lg outline-none focus:outline-clr-text px-5 placeholder:opacity-40 shadow-2xl"
+			class="bg-clr-bg py-3 rounded-lg outline-none focus:outline-clr-text focus:outline-[1px] px-5 placeholder:opacity-40 shadow-2xl"
 			v-if="genres.length > 0"
 		>
 			<option value="select genre" disabled selected>Select genre</option>
