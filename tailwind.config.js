@@ -33,6 +33,7 @@ export default {
                 "clr-primary": "#28adc8",
                 "clr-secondary": "#312155",
                 "clr-input": "#13162a",
+                "clr-error": "#ba1234"
             }
         },
     },

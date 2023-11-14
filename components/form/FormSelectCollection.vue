@@ -1,4 +1,7 @@
 <script setup>
+	defineProps({
+		v: Object,
+	});
 	const emits = defineEmits(["update-genre"]);
 
 	const adminStore = useAdminStore();
@@ -54,9 +57,11 @@
 				>
 			</div>
 			<div
+				v-if="selectedGenreList.length > 0 || v.$error"
+				:class="v.$error ? 'create-review-error' : ''"
 				class="p-5 bg-clr-bg rounded-lg flex flex-wrap gap-3"
-				v-if="selectedGenreList.length > 0"
 			>
+				<p v-if="v.$error">{{ v.$errors[0].$message }}</p>
 				<div
 					v-for="genre in selectedGenreList"
 					:key="genre.genre_id"
@@ -74,5 +79,3 @@
 		</section>
 	</div>
 </template>
-
-<style></style>
