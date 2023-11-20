@@ -4,6 +4,8 @@ import { required, minLength, helpers } from '@vuelidate/validators'
 
 export const useFormStore = defineStore('formStore', () => {
     const supabase = useSupabaseClient();
+    const adminStore = useAdminStore()
+    const { pending } = storeToRefs(adminStore)
 
     const createReviewState = ref({
         book_title: "",
@@ -31,7 +33,7 @@ export const useFormStore = defineStore('formStore', () => {
 
     const v = useVuelidate(createReviewRules, createReviewState, { $lazy: true, $autoDirty: true })
 
-    const pending = ref(false);
+
 
     // Image upload to subabase
 

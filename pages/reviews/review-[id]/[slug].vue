@@ -1,11 +1,10 @@
 <script setup>
 	definePageMeta({
-		middleware: ["get-review"],
+		middleware: ["get-current-review"],
 	});
 
 	const adminStore = useAdminStore();
-	const { currentReview } = storeToRefs(adminStore);
-	console.log(currentReview.value);
+	const { currentReview, currentReviewGenres } = storeToRefs(adminStore);
 </script>
 
 <template>
@@ -16,9 +15,19 @@
 				<NuxtImg :src="currentReview.cover_url" class="md:order-2" />
 				<div class="flex flex-col gap-2 md:order-1">
 					<h2>{{ currentReview.book_title }}</h2>
-					<h3>{{ currentReview.book_subtitle }}</h3>
+					<h3 class="mb-6">{{ currentReview.book_subtitle }}</h3>
 					<p>Author: {{ currentReview.author }}</p>
 					<p>Release date: {{ currentReview.published_at }}</p>
+					<div class="flex gap-2 flex-wrap">
+						<p>Genres:</p>
+						<p
+							class="genres"
+							v-for="genre in currentReviewGenres"
+							:key="genre"
+						>
+							{{ genre }}
+						</p>
+					</div>
 				</div>
 			</div>
 			<div class="grid gap-3">
@@ -36,4 +45,12 @@
 	</main>
 </template>
 
-<style scoped></style>
+<style scoped>
+	.genres::after {
+		content: ",";
+	}
+
+	.genres:last-of-type::after {
+		content: "";
+	}
+</style>
