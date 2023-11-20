@@ -1,6 +1,4 @@
 <script setup>
-	import reviews from "@/data/review.json";
-
 	const adminStore = useAdminStore();
 	const { latestReviews } = storeToRefs(adminStore);
 
@@ -21,7 +19,8 @@
 				:title="review.book_title"
 				:subtitle="review.book_subtitle"
 				:cover="review.cover_url"
-				:id="review.book_id"
+				:id="review.review_id"
+				:publishedAt="review.published_at"
 			/>
 		</div>
 		<AppButtonLink

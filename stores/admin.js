@@ -6,6 +6,7 @@ export const useAdminStore = defineStore("adminStore", () => {
     // Fetch genres
     const genres = ref([])
 
+
     const fetchAllGenres = async () => {
 
         try {
@@ -32,9 +33,8 @@ export const useAdminStore = defineStore("adminStore", () => {
         try {
             const { data: review, error } = await supabase
                 .from('reviews')
-                .select('book_title, book_subtitle, cover_url, review_id, author')
+                .select('book_title, book_subtitle, cover_url, review_id, author, published_at')
                 .range(0, 2)
-            console.log(review)
 
             latestReviews.value = review
 
@@ -49,6 +49,32 @@ export const useAdminStore = defineStore("adminStore", () => {
 
     }
 
+    // Selected review
+
+    const currentReview = ref(null)
+
+    const getReview = async (id) => {
+        try {
+            const { data, error } = await supabase
+                .from('reviews')
+                .select('*')
+                .eq('review_id', parseInt(id))
+                .single()
+
+            if (error) {
+                console.log('Get review supabase: ', error)
+                return
+            }
+
+            currentReview.value = data
+            // console.log(data)
+
+        } catch (error) {
+            console.log('Get review: ', error)
+        }
+    }
+
+
 
     return {
         // Fetch genres
@@ -56,6 +82,8 @@ export const useAdminStore = defineStore("adminStore", () => {
         fetchAllGenres,
         latestReviews,
         fetchLastReviews,
+        currentReview,
+        getReview
 
     };
 });

@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
 	devtools: { enabled: false },
 	css: ["~/assets/css/main.css"],
+	pages: true,
 	modules: [
 		"@nuxtjs/tailwindcss",
 		"@nuxt/image",
@@ -9,6 +10,7 @@ export default defineNuxtConfig({
 		"@pinia/nuxt",
 		"@nuxtjs/supabase",
 	],
+
 	components: [
 		{
 			path: "~/components",
