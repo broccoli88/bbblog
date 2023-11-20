@@ -22,7 +22,7 @@ export default defineNuxtConfig({
 	image: {
 		domains: ["images.ctfassets.net"],
 		quality: 80,
-		format: ["png", "webp", "avif", "jpeg", "jpg"],
+		format: ["webp", "avif", "png", "jpeg", "jpg"],
 	},
 	supabase: {
 		redirect: false,

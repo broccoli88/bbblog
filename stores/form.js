@@ -71,7 +71,7 @@ export const useFormStore = defineStore('formStore', () => {
             review_pt_1: createReviewState.value.review_pt_1,
             review_pt_2: createReviewState.value.review_pt_2,
             review_pt_3: createReviewState.value.review_pt_3,
-            cover_url: createReviewState.value.cover_url,
+            cover_url: `https://iqqnvdaqzmacxbtsyxnv.supabase.co/storage/v1/object/public/book-bestiary/${createReviewState.value.cover_url}`,
         })
 
 

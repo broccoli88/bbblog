@@ -1,9 +1,13 @@
 <script setup>
 	const props = defineProps({
-		review: Object,
+		author: String,
+		title: String,
+		subtitle: String,
+		cover: String,
+		id: Number,
 	});
 
-	const rawTitle = toRef(props.review, "title");
+	const rawTitle = toRef(props, "title");
 
 	const titleSlug = computed(() =>
 		rawTitle.value.split(" ").join("-").toLowerCase()
@@ -15,13 +19,13 @@
 	<article class="card relative bg-clr-bg border border-clr-primary">
 		<SectionFrame />
 		<section class="card__content grid grid-cols-2">
-			<NuxtPicture src="/images/book-cover.png" class="card__img" />
+			<NuxtPicture :src="cover" class="card__img" />
 			<div class="card__description p-3 flex flex-col z-10 capitalize">
 				<p class="text-fsm-note md:text-fsd-note"></p>
-				<h3></h3>
-				<h4 class="mb-2">the final installment</h4>
-				<p class="text-fsm-note md:text-fsd-note">by:</p>
-				<AppButtonLink class="mt-auto md:mt-8 grid" :src="reviewLink">
+				<h3>{{ title }}</h3>
+				<h4 class="mb-2">{{ subtitle }}</h4>
+				<p class="text-fsm-note md:text-fsd-note">by: {{ author }}</p>
+				<AppButtonLink class="md:mt-8 grid" :src="reviewLink">
 					check review
 				</AppButtonLink>
 			</div>
