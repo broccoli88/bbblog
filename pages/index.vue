@@ -4,7 +4,9 @@
 		<NuxtPicture src="/images/bg-hero.webp" class="hero-bg" />
 		<SectionHero />
 		<TheSearchBar />
-		<SectionLatestReviews />
+		<Suspense>
+			<SectionLatestReviews />
+		</Suspense>
 	</main>
 </template>
 
